@@ -8,7 +8,7 @@
 
 
 
-int suiji()
+int suiji()//产生随机数
 
 {
 
@@ -20,7 +20,7 @@ int suiji()
 
 
 
-void suiji24(int a[4][4])
+void suiji24(int a[4][4])//随机产生2或4
 
 {
 
@@ -98,7 +98,7 @@ void set(int a[4][4])
 
 }
 
-void print_num(int a[4][4], int m, int n)
+void print_num(int a[4][4], int m, int n)//输出函数，将数组元素输出到屏幕上
 
 {
 
@@ -146,7 +146,7 @@ void print(int a[4][4])
 
 
 
-int change(int a[4][4],char i)
+int change(int a[4][4],char i)//合并移动，指的是将数值赋值给数组内对应的位置
 
 {
 
@@ -156,7 +156,7 @@ int change(int a[4][4],char i)
 
 	int c[4][4];
 
-	for (j = 0; j < 4; j++)
+	for (j = 0; j < 4; j++)//设置一个独立的数组，并且把改变之前的数组复制到这个数组内
 
 	{
 
@@ -170,7 +170,7 @@ int change(int a[4][4],char i)
 
 	}
 
-	if (i == 'w')
+	if (i == 'w')//上移，使用栈的思想存储非零元素，并且相邻元素如果相同则相加并且出栈、输出，之后TOP指针指向后两个元素，一直如此循环，直到这一行元素被遍历完。
 
 	{
 
@@ -180,11 +180,11 @@ int change(int a[4][4],char i)
 
 			top = -1;
 
-			for (j = 0; j < 4; j++)
+			for (j = 0; j < 4; j++)//初始化栈
 
 				b[j] = 0;
 
-			for (j = 3; j > -1; j--)
+			for (j = 3; j > -1; j--)//进栈
 
 			{
 
@@ -204,17 +204,17 @@ int change(int a[4][4],char i)
 
 				{
 
-					if (top > -1)
+					if (top > -1)//如果栈不为空，则进行合并操作并且输出
 
 					{
 
-						if (top!=0&&b[top] == b[top - 1])
+						if (top!=0&&b[top] == b[top - 1])//如果两个元素相等则进行接下来的操作。加入top != 0防止数组越界而导致程序崩溃。
 
 						{
 
-							a[j][k] = 2 * b[top];
+							a[j][k] = 2 * b[top];//合并，即数值乘二
 
-							top = top - 2;
+							top = top - 2;//移动指针
 
 						}
 
@@ -222,7 +222,7 @@ int change(int a[4][4],char i)
 
 						{
 
-							a[j][k] = b[top--];
+							a[j][k] = b[top--];//直接输出不合并
 
 						}
 
@@ -232,7 +232,7 @@ int change(int a[4][4],char i)
 
 					{
 
-						a[j][k] = 0;
+						a[j][k] = 0;//如果栈为空，而且循环结束，那么输出0
 
 					}
 
@@ -242,7 +242,7 @@ int change(int a[4][4],char i)
 
 	}
 
-	if (i == 's')
+	if (i == 's')//下移操作，思想类似于W
 
 	{
 
@@ -314,7 +314,7 @@ int change(int a[4][4],char i)
 
 	}
 
-	if (i == 'a')
+	if (i == 'a')//左移操作，使用了另一种数据结构——队列
 
 	{
 
@@ -322,13 +322,13 @@ int change(int a[4][4],char i)
 
 		{
 
-			left = right = 0;
+			left = right = 0;//这里的left和right类似于队列的 front和 rear。
 
 			for (k = 0; k < 4; k++)
 
-				b[k] = 0;
+				b[k] = 0;//初始化队列
 
-			for (k = 0; k < 4; k++)
+			for (k = 0; k < 4; k++)//进队
 
 			{
 
@@ -346,17 +346,17 @@ int change(int a[4][4],char i)
 
 			{
 
-				if (left<right)
+				if (left<right)//如果队列为空，进行下面的操作。
 
 				{
 
-					if (left != 3 && b[left] == b[left + 1])
+					if (left != 3 && b[left] == b[left + 1])//left加入 != 3防止数组越界
 
 					{
 
-						a[j][k] = 2 * b[left];
+						a[j][k] = 2 * b[left];//乘二操作，如果队列的相邻两个元素相同就合并。
 
-						left = left + 2;
+						left = left + 2;//left移动到操作数的后两位
 
 					}
 
@@ -364,7 +364,7 @@ int change(int a[4][4],char i)
 
 					{
 
-						a[j][k] = b[left++];
+						a[j][k] = b[left++];//如果不相等直接输出
 
 					}
 
@@ -374,7 +374,7 @@ int change(int a[4][4],char i)
 
 				{
 
-					a[j][k] = 0;
+					a[j][k] = 0;如果循环未结束而队列为空则直接输出"0"
 
 				}
 
@@ -384,7 +384,7 @@ int change(int a[4][4],char i)
 
 	}
 
-	if (i == 'd')
+	if (i == 'd')//思想同a
 
 	{
 
@@ -456,7 +456,7 @@ int change(int a[4][4],char i)
 
 	}
 
-	for (j = 0; j < 4; j++)
+	for (j = 0; j < 4; j++)//判断两个数组元素是否相等，相等则不产生随机数
 
 	{
 
@@ -480,7 +480,7 @@ int change(int a[4][4],char i)
 
 }
 
-char change_num(int j) {
+char change_num(int j) {//键位相关，判断输入的数字并且转换为对应的字母
 
 	char i;
 
@@ -514,7 +514,7 @@ void scan(int a[4][4])
 
 	int j;
 
-	j = getch();
+	j = getch();//使用getchar可以不用回车输入，而且增加支持方向键
 
 
 
@@ -524,21 +524,25 @@ void scan(int a[4][4])
 
 	system("cls");//清屏
 
-	if (j == 224)
+	if (j == 224){
 
 		j = getch();
 
+	}
+
 	i = change_num(j);
 
-	if(change(a, i))
+	if(change(a, i)){
 
-	suiji24(a);
+		suiji24(a);
+
+	}
 
 }
 
 
 
-int isover(int a[4][4])
+int isover(int a[4][4])//判断游戏是否结束
 
 {
 
@@ -552,7 +556,7 @@ int isover(int a[4][4])
 
 		{
 
-			if (a[i][j] == 2048)
+			if (a[i][j] == 2048)//判断有没有达到2048，有则结束游戏并且返回状态码“ 1 ”
 
 			{
 
@@ -560,7 +564,7 @@ int isover(int a[4][4])
 
 			}
 
-			if (a[i][j] == 0)
+			if (a[i][j] == 0)//判断是否还有0，有则游戏继续并且返回状态码“ 0 ”
 
 			{
 
@@ -580,7 +584,7 @@ int isover(int a[4][4])
 
 		   {
 
-			   if (a[i][j] == a[i + 1][j] || a[i][j] == a[i][j + 1])
+			   if (a[i][j] == a[i + 1][j] || a[i][j] == a[i][j + 1])//判断3*3这个范围内的相邻元素是否可以合并，如果可以则返回状态码“ 0 ”
 
 			   {
 
@@ -592,7 +596,7 @@ int isover(int a[4][4])
 
 	   }
 
-	  for (i = 0; i < 3; i++)
+	  for (i = 0; i < 3; i++)//判断最后一排和最后一列元素是否可以合并
 
 	  {
 
@@ -614,13 +618,13 @@ int isover(int a[4][4])
 
 	  }
 
-	return 2;
+	return 2;//如果都不能合并则游戏失败并且返回状态码“ 2 ”
 
 }
 
 
 
-void welcome()
+void welcome()//欢迎界面，介绍游戏的操作说明
 
 {
 
